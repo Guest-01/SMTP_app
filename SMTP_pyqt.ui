@@ -11,7 +11,7 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>SMTP TEST v1</string>
+   <string>SMTP TEST v2</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <widget class="QGroupBox" name="groupBox">
@@ -393,19 +393,19 @@ p, li { white-space: pre-wrap; }
     <property name="title">
      <string>메뉴</string>
     </property>
-    <addaction name="actiontest"/>
+    <addaction name="action_2"/>
     <addaction name="separator"/>
-    <addaction name="actionExit"/>
+    <addaction name="action_3"/>
    </widget>
    <addaction name="menu"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="actiontest">
+  <action name="action_2">
    <property name="text">
     <string>프로그램 정보</string>
    </property>
   </action>
-  <action name="actionExit">
+  <action name="action_3">
    <property name="text">
     <string>Exit</string>
    </property>
