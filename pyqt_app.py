@@ -1,4 +1,5 @@
 import sys
+import os
 from PyQt5.QtWidgets import *
 from PyQt5 import uic
 from smtplib import SMTP, SMTP_SSL
@@ -19,6 +20,11 @@ class MyWindow(QMainWindow, form_class):
         self.pushButton_2.clicked.connect(self.send_button)
         self.action_2.triggered.connect(self.prog_info)
         self.action_3.triggered.connect(qApp.quit)
+        self.pushButton.clicked.connect(self.attach_file)
+    
+    def attach_file(self):
+        fname = QFileDialog.getOpenFileName(self)
+        self.label_9.setText(fname[0])
 
     def prog_info(self):
         dlg = InfoDialog()
@@ -49,28 +55,36 @@ class MyWindow(QMainWindow, form_class):
             'from': self.lineEdit_6.text(),
             'to': self.lineEdit_7.text(),
             'subject': self.lineEdit_8.text(),
-            'content': self.textEdit.toPlainText()
+            'content': self.textEdit.toPlainText(),
+            'attach': self.label_9.text()
         }
 
         return data
     
     def send_mail(self, mydict):
-        if mydict['ssl']:
-            print('ssl on')
-            server = SMTP_SSL(mydict['host'], mydict['port'])  # Port -> int
-        else:
-            print('ssl off')
-            server = SMTP(mydict['host'], mydict['port'])
-    
-        server.login(mydict['id'], mydict['pw'])  # Strings
 
         msg = EmailMessage()
         msg['Subject'] = mydict['subject']
         msg['From'] = mydict['from']
         msg['To'] = mydict['to']
         msg.set_content(mydict['content'])
+        
+        if self.label_9.text() != '경로 없음':
+            with open(mydict['attach'], 'rb') as f:
+                file_data = f.read()
+                file_name = os.path.basename(f.name)
 
-        server.send_message(msg)
+            msg.add_attachment(file_data, maintype='application', subtype='octet-stream', filename=file_name)
+
+        if mydict['ssl']:
+            print('ssl on')
+            server = SMTP_SSL(mydict['host'], mydict['port'])  # Port -> int
+        else:
+            print('ssl off')
+            server = SMTP(mydict['host'], mydict['port'])
+        
+        server.login(mydict['id'], mydict['pw'])  # Strings
+        server.sendmail(mydict['return_path'], mydict['to'], msg.as_string())
         server.quit()
     
         return

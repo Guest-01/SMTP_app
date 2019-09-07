@@ -6,43 +6,28 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
+    <width>571</width>
     <height>270</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>프로그램 정보</string>
   </property>
-  <widget class="QLabel" name="label">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>10</y>
-     <width>381</width>
-     <height>51</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>입력된 SMTP서버를 통해 메일을 발송하는 프로그램입니다. 파일첨부는 아직 구현중입니다. 아래 상태표시줄에 메일 발송 성공 및 실패 여부를 확인할 수 있습니다.</string>
-   </property>
-   <property name="wordWrap">
-    <bool>true</bool>
-   </property>
-  </widget>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>bluemail.ico</normaloff>bluemail.ico</iconset>
+  </property>
   <widget class="QTreeWidget" name="treeWidget">
    <property name="geometry">
     <rect>
      <x>10</x>
-     <y>70</y>
-     <width>381</width>
-     <height>191</height>
+     <y>60</y>
+     <width>551</width>
+     <height>201</height>
     </rect>
    </property>
-   <property name="indentation">
-    <number>10</number>
-   </property>
    <attribute name="headerDefaultSectionSize">
-    <number>30</number>
+    <number>50</number>
    </attribute>
    <column>
     <property name="text">
@@ -56,10 +41,10 @@
    </column>
    <item>
     <property name="text">
-     <string>1</string>
+     <string>3</string>
     </property>
     <property name="text">
-     <string>메일 보내기 구현</string>
+     <string>첨부파일, 여러명에게 보내기, 답장받을 주소 설정가능</string>
     </property>
    </item>
    <item>
@@ -70,6 +55,27 @@
      <string>메뉴바 및 상태바 구현</string>
     </property>
    </item>
+   <item>
+    <property name="text">
+     <string>1</string>
+    </property>
+    <property name="text">
+     <string>메일 보내기 구현</string>
+    </property>
+   </item>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>13</x>
+     <y>14</y>
+     <width>481</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>만든이: cloudonly21@gmail.com</string>
+   </property>
   </widget>
  </widget>
  <resources/>
